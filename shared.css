@@ -1,0 +1,299 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Montserrat:wght@500;600;700;800&display=swap');
+
+/* Shared navigation behaviour for every page. */
+body {
+    /* Calm blue-grey canvas keeps every page clean and clinical. */
+    background: linear-gradient(135deg, #f7fafc 0%, #edf4f8 55%, #e7f0f5 100%);
+    background-attachment: fixed;
+}
+
+.header,
+.navbar {
+    background-color: rgba(255, 255, 255, 0.96);
+}
+.header .container {
+    position: relative;
+}
+
+.mobile-menu-toggle {
+    display: none !important;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--primary-color);
+    border-radius: 6px;
+    background: #fff;
+    color: var(--primary-dark);
+    font-size: 20px;
+    cursor: pointer;
+}
+
+@media (max-width: 991px) {
+    .header .container {
+        flex-direction: row !important;
+        justify-content: space-between;
+        align-items: center !important;
+    }
+
+    .mobile-menu-toggle {
+        display: inline-flex !important;
+    }
+
+    .navbar {
+        display: none !important;
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 20px;
+        right: 20px;
+        z-index: 20;
+        padding: 12px;
+        border-radius: 8px;
+        background: #fff;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+    }
+
+    .navbar.open {
+        display: block !important;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+    }
+
+    .navbar a {
+        display: block;
+        padding: 10px 12px;
+    }
+
+.btn-header {
+        display: none;
+    }
+}
+
+/* Refined navigation: clear hierarchy, responsive spacing, and subtle motion. */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: linear-gradient(110deg, #023e8a, #0077b6 58%, #00a9ca);
+    backdrop-filter: blur(14px);
+    animation: navigation-enter 560ms ease-out both;
+    transition: box-shadow 220ms ease, background-color 220ms ease;
+}
+
+.header.scrolled {
+    background: linear-gradient(110deg, #012a5f, #0065a5 58%, #008eb1);
+    box-shadow: 0 8px 24px rgba(2, 62, 138, 0.25);
+}
+
+.header .logo h2,
+.header .logo h2 span,
+.header .navbar a {
+    color: #ffffff;
+}
+
+/* MediCode logo mark: a compact healthcare cross beside the wordmark. */
+.header .logo h2,
+.header .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: -0.4px;
+    font-size: 0;
+}
+
+.header .logo h2::before,
+.header .brand::before {
+    display: inline-grid;
+    width: 32px;
+    height: 32px;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.40);
+    border-radius: 9px;
+    background: #d9f5ff;
+    color: #023e8a;
+    box-shadow: 0 5px 12px rgba(2, 62, 138, 0.22);
+    content: '+';
+    font-family: Arial, sans-serif;
+    font-size: 27px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.header .navbar {
+    background: transparent;
+}
+
+.navbar ul {
+    align-items: center;
+    justify-content: center;
+    gap: clamp(12px, 1.45vw, 24px);
+}
+
+.navbar a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 0;
+    white-space: nowrap;
+    transition: color 180ms ease, transform 180ms ease;
+}
+
+.navbar a::after {
+    position: absolute;
+    right: 0;
+    bottom: 3px;
+    left: 0;
+    height: 2px;
+    border-radius: 2px;
+    background: #91efff;
+    content: '';
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 220ms ease;
+}
+
+.navbar a:hover,
+.navbar a.active {
+    color: #d7f7ff;
+}
+
+.navbar a:hover {
+    transform: translateY(-1px);
+}
+
+.navbar a:hover::after,
+.navbar a.active::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.btn-header {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #d9f5ff;
+    color: #023e8a;
+    box-shadow: 0 6px 14px rgba(2, 62, 138, 0.25);
+    transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.btn-header::before {
+    content: '\f2bd';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+}
+
+.btn-header:hover {
+    background: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(2, 62, 138, 0.34);
+}
+
+@keyframes navigation-enter {
+    from { opacity: 0; transform: translateY(-14px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .header, .navbar a, .navbar a::after, .btn-header { animation: none; transition: none; }
+}
+
+/* Consistent professional content boxes across the site. */
+.service-card,
+.career-card,
+.portal-card,
+.contact-card,
+.info-card,
+.card,
+.translation-panel {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(0, 119, 182, 0.18);
+    border-top: 4px solid #0077b6;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 10px 28px rgba(2, 62, 138, 0.10);
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.service-card::before,
+.career-card::before,
+.portal-card::before,
+.contact-card::before,
+.info-card::before,
+.card::before,
+.translation-panel::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 90px;
+    height: 90px;
+    border-radius: 0 0 0 90px;
+    background: rgba(145, 239, 255, 0.24);
+    content: '';
+    pointer-events: none;
+}
+
+.service-card:hover,
+.career-card:hover,
+.portal-card:hover,
+.contact-card:hover,
+.info-card:hover,
+.card:hover,
+.translation-panel:hover {
+    border-color: rgba(0, 119, 182, 0.40);
+    box-shadow: 0 18px 38px rgba(2, 62, 138, 0.18);
+    transform: translateY(-6px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .service-card, .career-card, .portal-card, .contact-card, .info-card, .card, .translation-panel { transition: none; }
+}
+
+/* Website-wide product-first visual language.  These are intentionally abstract
+   healthcare details rather than literal food/packaging elements. */
+:root { --brand-ink:#10251e; --brand-cream:#f5f1e8; --brand-lime:#d7ff57; --brand-coral:#ff7e62; }
+body { background:var(--brand-cream); color:var(--brand-ink); font-family:'Montserrat', Poppins, sans-serif; }
+.header,.header.scrolled { background:rgba(245,241,232,.94); border-bottom:1px solid rgba(16,37,30,.12); box-shadow:none; }
+.header .logo h2,.header .logo h2 span,.header .navbar a { color:var(--brand-ink); }
+.header .logo h2::before,.header .brand::before { background:var(--brand-ink); color:var(--brand-lime); border:0; box-shadow:none; }
+.navbar a { font-size:11px; font-weight:800; letter-spacing:.03em; text-transform:uppercase; }
+.navbar a::after { background:var(--brand-coral); }
+.navbar a:hover,.navbar a.active { color:var(--brand-ink); }
+.btn-header,.btn-header:hover { border-radius:100px; background:var(--brand-ink); color:var(--brand-cream); box-shadow:none; }
+.service-card,.career-card,.portal-card,.contact-card,.info-card,.card,.translation-panel { border:1px solid rgba(16,37,30,.15); border-top:4px solid var(--brand-coral); border-radius:16px; background:rgba(245,241,232,.94); box-shadow:0 12px 28px rgba(16,37,30,.08); }
+.service-card::before,.career-card::before,.portal-card::before,.contact-card::before,.info-card::before,.card::before,.translation-panel::before { background:rgba(215,255,87,.45); }
+.service-card:hover,.career-card:hover,.portal-card:hover,.contact-card:hover,.info-card:hover,.card:hover,.translation-panel:hover { border-color:var(--brand-ink); box-shadow:0 18px 34px rgba(16,37,30,.15); }
+.section-title h1,.section-title h2,.page-title,.hero h1,.hero-title,.student-portal h1,.contact h1,.about h1,.services h1 { color:var(--brand-ink); font-family:'Montserrat', Poppins, sans-serif; font-weight:800; letter-spacing:-.055em; }
+.section-title h2::after,.hero h1::after { content:'clear care, thoughtfully made'; display:block; margin-top:8px; color:var(--brand-coral); font-family:'Caveat', cursive; font-size:.58em; font-weight:700; letter-spacing:-.04em; transform:rotate(-2deg); }
+.btn,.button,.login-link { border-radius:100px; background:var(--brand-ink); color:var(--brand-cream); font-family:'Montserrat', sans-serif; font-weight:800; }
+.btn:hover,.button:hover,.login-link:hover { background:var(--brand-coral); color:#fff; }
+.footer,footer { background:var(--brand-ink); }
+.footer a:hover { color:var(--brand-lime); }
+
+/* Login is intentionally handled as a branded product entry point. */
+.login-page { background:var(--brand-cream); }
+.login-intro { position:relative; overflow:hidden; background:var(--brand-ink); }
+.login-intro::after { content:'+'; position:absolute; right:-55px; bottom:-115px; color:var(--brand-lime); font:700 330px/1 'Montserrat',sans-serif; opacity:.95; }
+.login-intro .brand { position:relative; z-index:1; color:var(--brand-cream); font-family:'Montserrat',sans-serif; letter-spacing:-.08em; }
+.login-intro .brand span { color:var(--brand-lime); }
+.intro-content { position:relative; z-index:1; }
+.intro-icon { color:var(--brand-lime); }
+.intro-content h1 { font-family:'Montserrat',sans-serif; font-weight:800; letter-spacing:-.06em; line-height:1.02; }
+.intro-content h1::after { content:'your work, in clear focus'; display:block; margin-top:13px; color:var(--brand-coral); font:700 .72em 'Caveat',cursive; transform:rotate(-2deg); }
+.student-link { border-radius:100px; border-color:var(--brand-lime); }
+.student-link:hover { background:var(--brand-lime); color:var(--brand-ink); }
+.login-area { background:#e6eadf; }
+.login-card { border-radius:18px; border-top:5px solid var(--brand-coral); background:var(--brand-cream); box-shadow:14px 16px 0 var(--brand-ink); }
+.login-card h2 { color:var(--brand-ink); font-family:'Montserrat',sans-serif; font-weight:800; letter-spacing:-.055em; }
+.input-wrap { border-radius:9px; border-color:rgba(16,37,30,.25); background:#fffdf8; }
+.input-wrap:focus-within { border-color:var(--brand-coral); box-shadow:0 0 0 3px rgba(255,126,98,.18); }
+.form-options a,.support-text a,.login-status { color:var(--brand-coral); }
+.login-button { border-radius:100px; background:var(--brand-ink); font-family:'Montserrat',sans-serif; font-weight:800; }
+.login-button:hover { background:var(--brand-coral); }
+@media (max-width:700px) { .header .navbar { background:var(--brand-cream); } .mobile-menu-toggle { border-color:var(--brand-ink); background:var(--brand-ink); color:var(--brand-cream); } }
